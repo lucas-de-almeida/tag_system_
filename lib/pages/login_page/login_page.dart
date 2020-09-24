@@ -30,7 +30,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 InputDefault.register(
                   inputController: _registerController,
-                  hintText: 'Registro',
+                  hintText: 'registry'.tr,
                   icon: Icons.person,
                   autofocus: true,
                 ),
@@ -39,11 +39,11 @@ class LoginPage extends StatelessWidget {
                 ),
                 InputDefault.password(
                   inputController: _passordController,
-                  hintText: 'Senha',
+                  hintText: 'password'.tr,
                   icon: Icons.lock,
                   validator: (value) {
                     if (value.length < 6) {
-                      return 'Senha muito curta!';
+                      return 'SshortPass'.tr;
                     }
                     return null;
                   },
@@ -55,19 +55,19 @@ class LoginPage extends StatelessWidget {
                   children: <Widget>[
                     Expanded(
                       child: LargeButtonDefault(
-                        label: 'ENTRAR',
+                        label: 'enter'.tr,
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
                             Get.snackbar(
-                              'Logou',
-                              'Logado com sucesso!',
+                              'logged'.tr,
+                              'SuccesLogged'.tr,
                               snackPosition: SnackPosition.BOTTOM,
                               backgroundColor: Colors.green,
                             );
                           } else {
                             Get.snackbar(
-                              'Erro',
-                              'Erro ao logar',
+                              'error'.tr,
+                              'errorLog'.tr,
                               backgroundColor: Colors.red,
                               snackPosition: SnackPosition.BOTTOM,
                             );
@@ -86,10 +86,7 @@ class LoginPage extends StatelessWidget {
                     onPressed: () {},
                     child: Column(
                       children: [
-                        Text(
-                          'Esqueceu sua senha?',
-                        ),
-                        Text('Clique aqui'),
+                        Text('forgetPassword'.tr),
                       ],
                     ),
                   ),
