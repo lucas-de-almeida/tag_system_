@@ -6,6 +6,7 @@ import 'dart:ui' as ui;
 
 void main() => runApp(
       GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         translations: TagsTranslation(),
         locale: ui.window.locale,
         fallbackLocale: Locale('en', 'US'),
