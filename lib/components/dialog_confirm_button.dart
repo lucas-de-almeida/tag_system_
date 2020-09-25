@@ -9,7 +9,7 @@ class DialogConfirmButton extends StatelessWidget {
         Get.back();
       },
       child: Text(
-        'ENTENDIDO',
+        'OK',
         style: TextStyle(
           color: Colors.grey[600],
           fontWeight: FontWeight.bold,

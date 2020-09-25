@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tag_system/components/dialog_confirm_button.dart';
 import 'package:tag_system/components/input_default.dart';
 import 'package:tag_system/components/large_button_default.dart';
 import 'package:tag_system/components/logo_default.dart';
@@ -30,9 +31,9 @@ class LoginPage extends StatelessWidget {
                 ),
                 InputDefault.register(
                   inputController: _registerController,
+                  //import o package do get e depois so colocar o tr!não esqueça da classe translation!
                   hintText: 'registry'.tr,
                   icon: Icons.person,
-                  autofocus: true,
                 ),
                 SizedBox(
                   height: 40,
@@ -43,7 +44,7 @@ class LoginPage extends StatelessWidget {
                   icon: Icons.lock,
                   validator: (value) {
                     if (value.length < 6) {
-                      return 'SshortPass'.tr;
+                      return 'shortPass'.tr;
                     }
                     return null;
                   },
@@ -60,7 +61,7 @@ class LoginPage extends StatelessWidget {
                           if (_formKey.currentState.validate()) {
                             Get.snackbar(
                               'logged'.tr,
-                              'SuccesLogged'.tr,
+                              'succesLogged'.tr,
                               snackPosition: SnackPosition.BOTTOM,
                               backgroundColor: Colors.green,
                             );
@@ -83,7 +84,21 @@ class LoginPage extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: FlatButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.defaultDialog(
+                        radius: 0.0,
+                        title: 'forgetPasswordTitle'.tr,
+                        content: Text(
+                          'alertForget'.tr,
+                        ),
+                        confirm: Align(
+                          alignment: Alignment.bottomRight,
+                          child: DialogConfirmButton(),
+                        ),
+                      );
+                      //se se for adm e so descomenta kkkk
+                      //Get.toNamed("/forget");
+                    },
                     child: Column(
                       children: [
                         Text('forgetPassword'.tr),
