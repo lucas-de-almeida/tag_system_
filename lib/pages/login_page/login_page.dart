@@ -85,6 +85,7 @@ class LoginPage extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: FlatButton(
                     onPressed: () {
+                      /*
                       Get.defaultDialog(
                         radius: 0.0,
                         title: 'forgetPasswordTitle'.tr,
@@ -96,8 +97,10 @@ class LoginPage extends StatelessWidget {
                           child: DialogConfirmButton(),
                         ),
                       );
+                       */
                       //se se for adm e so descomenta kkkk
-                      //Get.toNamed("/forget");
+
+                      Get.toNamed("/forget");
                     },
                     child: Column(
                       children: [

@@ -23,8 +23,8 @@ class TagsTranslation extends Translations {
           'repeatPassword': 'Repeat the New Password',
           'cancel': 'Cancel',
           'change': 'Change',
-          'alertPassword':
-              'Password changed successfully! Please login to validate the change.',
+          'alertPasswordTitle': 'Password changed',
+          'alertPassword': 'Please login to validate the change.',
           'alertForget': 'To change your password, look for maintenance.',
         },
         'pt_BR': {
@@ -46,8 +46,8 @@ class TagsTranslation extends Translations {
           'repeatPassword': 'Repete a Nova Senha',
           'cancel': 'Cancelar',
           'change': 'Alterar',
-          'alertPassword':
-              'Senha alterada com Sucesso! Por favor faça login para validação da alteração.',
+          'alertPasswordTitle': 'Senha alterada',
+          'alertPassword': 'Por favor faça login para validação da alteração.',
           'alertForget': 'Para alterar sua senha procure a manutenção.',
         }
       };
