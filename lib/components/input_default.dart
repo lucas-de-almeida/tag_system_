@@ -175,32 +175,33 @@ class InputDefault extends StatelessWidget {
           autofocus: autofocus ?? false,
           keyboardType: inputType ?? TextInputType.text,
           inputFormatters: formatters ?? [],
-          obscureText: isPassword ? c.isObscure.value : c.isNotPassword.value,
+          obscureText: isPassword
+              ? c.returnIsObscure
+              : false, // Só esconderá o text se isPassword for true;
           textAlign: TextAlign.center,
           decoration: InputDecoration(
             labelText: hintText,
             labelStyle: TextStyle(
               color: Colors.black,
             ),
-            suffixIcon:
-                isPassword //Se for password utiliza um IconButton, se não usa um ícone normal.
-                    ? Obx(
-                        () => IconButton(
-                          icon: Icon(
-                            c.isObscure.value
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: Colors.grey[600],
-                          ),
-                          onPressed: () {
-                            c.swichVisibility();
-                          },
-                        ),
-                      )
-                    : Icon(
-                        icon,
-                        color: Colors.grey[600],
-                      ),
+            suffixIcon: Visibility(
+              visible: isPassword,
+              //Se isPassword==true, retorna IconButton;
+              child: IconButton(
+                icon: Icon(
+                  c.returnIsObscure ? Icons.visibility : Icons.visibility_off,
+                  color: Colors.grey[600],
+                ),
+                onPressed: () {
+                  c.swichVisibility();
+                },
+              ),
+              //Se isPassword==false, retorna Icon;
+              replacement: Icon(
+                icon,
+                color: Colors.grey[600],
+              ),
+            ),
           ),
           controller: inputController,
           validator: validator,
