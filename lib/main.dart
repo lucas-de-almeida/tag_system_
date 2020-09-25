@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tag_system/lang/translation_tags.dart';
+import 'package:tag_system/pages/forget_password/forget_password.dart';
 import 'package:tag_system/pages/login_page/login_page.dart';
 import 'dart:ui' as ui;
 
 void main() => runApp(
       GetMaterialApp(
         debugShowCheckedModeBanner: false,
+        //barbada na tradução! getX e vida!!!
         translations: TagsTranslation(),
         locale: ui.window.locale,
         fallbackLocale: Locale('en', 'US'),
-        theme: ThemeData.light(),
-        home: LoginPage(),
+        //so da getX!
+        // olhas as rotas iniciadas so chama aonde quiser usando o Get.toNamed("/forget"); por exemplo
+        initialRoute: '/',
+        getPages: [
+          GetPage(
+            name: '/',
+            page: () => LoginPage(),
+          ),
+          GetPage(
+            name: '/forget',
+            page: () => ForgetPassword(),
+          ),
+        ],
       ),
     );
