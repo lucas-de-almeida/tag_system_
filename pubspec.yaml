@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
- 
+  share: 
   cupertino_icons: ^1.0.0
   get: ^3.11.1
   cnpj_cpf_formatter: ^1.0.8

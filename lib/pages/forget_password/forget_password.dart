@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share/share.dart';
+import 'package:tag_system/components/dialog_confirm_button.dart';
 import 'package:tag_system/components/input_default.dart';
 import 'package:tag_system/components/large_button_default.dart';
 
@@ -86,7 +88,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       height: 40,
                     ),
                     InputDefault.password(
-                      inputController: _passwordController,
+                      inputController: _passwordRepeatController,
                       hintText: 'repeatPassword'.tr,
                       icon: Icons.lock,
                       validator: (value) {
@@ -104,7 +106,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         Expanded(
                           flex: 20,
                           child: LargeButtonDefault(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.toNamed('/');
+                            },
                             label: 'cancel'.tr,
                           ),
                         ),
@@ -114,7 +118,30 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         Expanded(
                           flex: 20,
                           child: LargeButtonDefault(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.defaultDialog(
+                                radius: 0.0,
+                                title: 'alertPasswordTitle'.tr,
+                                content: Text(
+                                  'alertPassword'.tr,
+                                ),
+                                confirm: Row(
+                                  children: [
+                                    FlatButton(
+                                      onPressed: () {
+                                        //esta entre aspas por que precisa ter uma string
+                                        Share.share('_passwordController.text');
+                                      },
+                                      child: Icon(Icons.share),
+                                    ),
+                                    SizedBox(
+                                      width: 70,
+                                    ),
+                                    DialogConfirmButton(),
+                                  ],
+                                ),
+                              );
+                            },
                             label: 'change'.tr,
                           ),
                         ),
