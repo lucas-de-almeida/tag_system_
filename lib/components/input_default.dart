@@ -170,42 +170,40 @@ class InputDefault extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetX(
-      builder: (_) => TextFormField(
-        focusNode: focusNode,
-        autofocus: autofocus ?? false,
-        keyboardType: inputType ?? TextInputType.text,
-        inputFormatters: formatters ?? [],
-        obscureText: c.isObscure.value,
-        textAlign: TextAlign.center,
-        decoration: InputDecoration(
-          labelText: hintText,
-          labelStyle: TextStyle(
-            color: Colors.black,
-          ),
-          suffixIcon:
-              isPassword //Se for password utiliza um IconButton, se não usa um ícone normal.
-                  ? Obx(
-                      () => IconButton(
-                        icon: Icon(
-                          c.isObscure.value
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          color: Colors.grey[600],
+    return Obx(() => TextFormField(
+          focusNode: focusNode,
+          autofocus: autofocus ?? false,
+          keyboardType: inputType ?? TextInputType.text,
+          inputFormatters: formatters ?? [],
+          obscureText: isPassword ? c.isObscure.value : c.isNotPassword.value,
+          textAlign: TextAlign.center,
+          decoration: InputDecoration(
+            labelText: hintText,
+            labelStyle: TextStyle(
+              color: Colors.black,
+            ),
+            suffixIcon:
+                isPassword //Se for password utiliza um IconButton, se não usa um ícone normal.
+                    ? Obx(
+                        () => IconButton(
+                          icon: Icon(
+                            c.isObscure.value
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.grey[600],
+                          ),
+                          onPressed: () {
+                            c.swichVisibility();
+                          },
                         ),
-                        onPressed: () {
-                          c.swichVisibility();
-                        },
+                      )
+                    : Icon(
+                        icon,
+                        color: Colors.grey[600],
                       ),
-                    )
-                  : Icon(
-                      icon,
-                      color: Colors.grey[600],
-                    ),
-        ),
-        controller: inputController,
-        validator: validator,
-      ),
-    );
+          ),
+          controller: inputController,
+          validator: validator,
+        ));
   }
 }
