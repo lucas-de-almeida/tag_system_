@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:tag_system/utils/constants.dart';
+import 'package:get/get.dart';
 
 class ListOS extends StatefulWidget {
   @override
@@ -8,21 +11,104 @@ class ListOS extends StatefulWidget {
 
 class _ListOSState extends State<ListOS> {
   DateTime _dateTime = DateTime.now();
-
   @override
   Widget build(BuildContext context) {
+    //usa a biblioteca do intl para fazer a data do aparelho no formato que quiser
+    //porem essa data tem q ser alterada conform vir da lista , essa esta aqui pra se salvar no formato
     String _dateFormat = DateFormat('dd/MM/y').format(_dateTime);
     return Scaffold(
-      appBar: AppBar(),
+      //pode ser mudado nao tem um exemplo lana marvel, nao recordo se iamos de drawer ou os botoes diretos na home
+      //porem ja deixei pronto a base
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Home Opções'),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Home'),
+              selected: true,
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.grid_on),
+              title: Text('Almoxarifado'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.edit),
+              title: Text('Cadastro de usuario'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.edit),
+              title: Text('Cadastro de maquinas'),
+              onTap: () {},
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.exit_to_app),
+              title: Text('Sair'),
+              onTap: () {
+                SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+              },
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print('vai pra tela de ediçao ou nova Os');
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.blue,
+      ),
+      appBar: AppBar(
+        backgroundColor: Colors.grey,
+        actions: [
+          //faz os tres botaoes no canto esquerdo
+          PopupMenuButton<OrderOptions>(
+            itemBuilder: (context) => <PopupMenuEntry<OrderOptions>>[
+              const PopupMenuItem<OrderOptions>(
+                child: Text("Tag de Maquinas"),
+                value: OrderOptions.tagdeMachine,
+              ),
+              const PopupMenuItem<OrderOptions>(
+                child: Text("Data Inicial e Final"),
+                value: OrderOptions.dateInitlEnd,
+              ),
+              const PopupMenuItem<OrderOptions>(
+                child: Text("Registro de usuario"),
+                value: OrderOptions.userRegister,
+              ),
+              const PopupMenuItem<OrderOptions>(
+                child: Text("Area"),
+                value: OrderOptions.area,
+              ),
+              const PopupMenuItem<OrderOptions>(
+                child: Text("Turno"),
+                value: OrderOptions.shift,
+              ),
+            ],
+            onSelected: _orderList,
+          ),
+        ],
+      ),
       body: Container(
         width: 400,
-        height: 200,
+        height: 120,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: [Color.fromARGB(255, 203, 236, 241), Colors.white],
+              colors: [Color.fromARGB(255, 203, 236, 241), Colors.blue],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight),
         ),
+        //dados do card vai vir do banco estes esta fixos so pra mostrar o modelo
+        //nao irei incluir tag de tradução para os itens dentro do card pq ele mudam conforme a lista
         child: GestureDetector(
           child: Card(
             child: Padding(
@@ -37,12 +123,17 @@ class _ListOSState extends State<ListOS> {
                         Text(
                           _dateFormat,
                           style: TextStyle(
-                            fontSize: 22.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+                        SizedBox(width: 10),
                         Text(
                           "Nome da maquina",
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          "Preventiva",
                           style: TextStyle(fontSize: 18.0),
                         ),
                       ],
@@ -52,9 +143,47 @@ class _ListOSState extends State<ListOS> {
               ),
             ),
           ),
-          onTap: () {},
+          onTap: () {
+            print('navega para tela de edicao/cadastro');
+          },
+          onLongPress: () {
+            Get.defaultDialog(
+              title: 'Ira Excluir a O.S.',
+              cancel: FlatButton(
+                onPressed: () {
+                  Get.back();
+                },
+                child: Text('cancel'.tr),
+              ),
+              confirm: FlatButton(
+                onPressed: () {
+                  print('chama a funcao pra deletar');
+                  Get.back();
+                },
+                child: Text('enter'.tr),
+              ),
+            );
+          },
         ),
       ),
     );
+  }
+
+  //funcao que vai definir o que fazer com cada filtro
+  //ou seja a pegar a lista de os e definir a logica.
+  void _orderList(OrderOptions result) {
+    switch (result) {
+      case OrderOptions.tagdeMachine:
+        break;
+      case OrderOptions.dateInitlEnd:
+        break;
+      case OrderOptions.area:
+        break;
+      case OrderOptions.userRegister:
+        break;
+      case OrderOptions.shift:
+        break;
+    }
+    setState(() {});
   }
 }
