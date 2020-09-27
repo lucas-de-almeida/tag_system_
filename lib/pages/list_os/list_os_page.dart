@@ -80,7 +80,7 @@ class _ListOSState extends State<ListOS> {
                 value: OrderOptions.tagdeMachine,
               ),
               PopupMenuItem<OrderOptions>(
-                child: Text("Data Inicial e Final"),
+                child: Text("dateOpenEnd".tr),
                 value: OrderOptions.dateInitlEnd,
               ),
               PopupMenuItem<OrderOptions>(
