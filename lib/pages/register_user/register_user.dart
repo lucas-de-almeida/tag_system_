@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tag_system/components/drop_default.dart';
 import 'package:tag_system/components/input_default.dart';
 
 class ResgisterUser extends StatefulWidget {
@@ -19,7 +20,7 @@ class _ResgisterUserState extends State<ResgisterUser> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: Text('registerUser'.tr),
+        title: Text('userRegister'.tr),
         centerTitle: true,
         actions: [
           IconButton(
@@ -85,31 +86,38 @@ class _ResgisterUserState extends State<ResgisterUser> {
                   icon: Icons.email,
                 ),
                 SizedBox(height: 10),
-                DropdownButtonFormField<String>(
-                  value: dropdownValueSfhift,
-                  decoration: InputDecoration(
-                    labelText: 'shift'.tr,
-                  ),
-                  items: _getDropdownItensSfhit(),
-                  onChanged: (value) {
-                    setState(() {
-                      dropdownValueSfhift = value;
-                    });
-                  },
+                DropMenuDefault(
+                  labelText: 'shift'.tr,
+                  value: 'Escolha um turno',
+                  items: [
+                    'Escolha um turno',
+                    'Primeiro turno',
+                    'Segundo turno',
+                    'Terceiro turno',
+                  ].map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
                 ),
                 SizedBox(height: 10),
-                DropdownButtonFormField<String>(
-                  value: dropdownValueArea,
-                  decoration: InputDecoration(
-                    labelText: 'area'.tr,
-                  ),
-                  items: _getDropdownItensArea(),
-                  onChanged: (value) {
-                    setState(() {
-                      dropdownValueArea = value;
-                    });
-                  },
+                DropMenuDefault(
+                  labelText: 'area'.tr,
+                  value: 'Escolha uma area',
+                  items: [
+                    'Escolha uma area',
+                    'Manutenção',
+                    'Adm',
+                    'Operador',
+                  ].map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
                 ),
+                SizedBox(height: 10),
                 InputDefault.cellPhone(
                   inputController: _registerController,
                   //import o package do get e depois so colocar o tr!não esqueça da classe translation!
@@ -135,33 +143,5 @@ class _ResgisterUserState extends State<ResgisterUser> {
         ),
       ),
     );
-  }
-
-  List<DropdownMenuItem> _getDropdownItensSfhit() {
-    return <String>[
-      'Escolha um turno',
-      'Primeiro turno',
-      'Segundo turno',
-      'Terceiro turno'
-    ].map<DropdownMenuItem<String>>((String value) {
-      return DropdownMenuItem<String>(
-        value: value,
-        child: Text(value),
-      );
-    }).toList();
-  }
-
-  List<DropdownMenuItem> _getDropdownItensArea() {
-    return <String>[
-      'Escolha uma area',
-      'Manutenção',
-      'Adm',
-      'Operador',
-    ].map<DropdownMenuItem<String>>((String value) {
-      return DropdownMenuItem<String>(
-        value: value,
-        child: Text(value),
-      );
-    }).toList();
   }
 }
