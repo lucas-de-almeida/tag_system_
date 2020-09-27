@@ -68,6 +68,8 @@ class _ListOSState extends State<ListOS> {
         backgroundColor: Colors.blue,
       ),
       appBar: AppBar(
+        title: Text('listOSTitle'.tr),
+        centerTitle: true,
         backgroundColor: Colors.grey,
         actions: [
           //faz os tres botaoes no canto esquerdo
@@ -148,7 +150,7 @@ class _ListOSState extends State<ListOS> {
           },
           onLongPress: () {
             Get.defaultDialog(
-              title: 'Ira Excluir a O.S.',
+              title: 'excludeOsAlert'.tr,
               cancel: FlatButton(
                 onPressed: () {
                   Get.back();
@@ -174,14 +176,21 @@ class _ListOSState extends State<ListOS> {
   void _orderList(OrderOptions result) {
     switch (result) {
       case OrderOptions.tagdeMachine:
+        //alguma funcao
         break;
       case OrderOptions.dateInitlEnd:
+        //alguma funcao
         break;
       case OrderOptions.area:
+        //alguma funcao
         break;
       case OrderOptions.userRegister:
+        //alguma funcao
         break;
       case OrderOptions.shift:
+        //alguma funcao
+        break;
+      default:
         break;
     }
     setState(() {});

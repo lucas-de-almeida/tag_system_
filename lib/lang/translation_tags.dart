@@ -26,6 +26,13 @@ class TagsTranslation extends Translations {
           'alertPasswordTitle': 'Password changed',
           'alertPassword': 'Please login to validate the change.',
           'alertForget': 'To change your password, look for maintenance.',
+          'tagMachines': 'Tag Machine',
+          'dateOpenEnd': 'Date Open and End',
+          'UserRegister': 'User Register',
+          'area': 'Area',
+          'shift': 'Shift',
+          'listOSTitle': 'O.S List',
+          'excludeOsAlert': 'It will exclude the O.S?',
         },
         'pt_BR': {
           'maintenanceTitle': 'HercoManutenção',
@@ -49,6 +56,13 @@ class TagsTranslation extends Translations {
           'alertPasswordTitle': 'Senha alterada',
           'alertPassword': 'Por favor faça login para validação da alteração.',
           'alertForget': 'Para alterar sua senha procure a manutenção.',
+          'tagMachines': 'Tag Maquinas',
+          'dateOpenEnd': 'Data Inicial e Final',
+          'UserRegister': 'Registro Usuario',
+          'area': 'Area',
+          'shift': 'Turno',
+          'listOSTitle': 'Lista de O.S',
+          'excludeOsAlert': 'Ira excluir a O.S?',
         }
       };
 }
