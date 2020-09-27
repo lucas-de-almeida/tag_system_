@@ -6,6 +6,8 @@ import 'package:tag_system/pages/list_os/list_os_page.dart';
 import 'package:tag_system/pages/login_page/login_page.dart';
 import 'dart:ui' as ui;
 
+import 'package:tag_system/pages/register_user/register_user.dart';
+
 void main() => runApp(
       GetMaterialApp(
         debugShowCheckedModeBanner: false,
@@ -28,6 +30,10 @@ void main() => runApp(
           GetPage(
             name: '/list_os',
             page: () => ListOS(),
+          ),
+          GetPage(
+            name: '/register_user',
+            page: () => ResgisterUser(),
           ),
         ],
       ),

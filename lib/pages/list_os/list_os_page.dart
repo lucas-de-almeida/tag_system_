@@ -75,24 +75,24 @@ class _ListOSState extends State<ListOS> {
           //faz os tres botaoes no canto esquerdo
           PopupMenuButton<OrderOptions>(
             itemBuilder: (context) => <PopupMenuEntry<OrderOptions>>[
-              const PopupMenuItem<OrderOptions>(
-                child: Text("Tag de Maquinas"),
+              PopupMenuItem<OrderOptions>(
+                child: Text("tagMachines".tr),
                 value: OrderOptions.tagdeMachine,
               ),
-              const PopupMenuItem<OrderOptions>(
-                child: Text("Data Inicial e Final"),
+              PopupMenuItem<OrderOptions>(
+                child: Text("dateOpenEnd".tr),
                 value: OrderOptions.dateInitlEnd,
               ),
-              const PopupMenuItem<OrderOptions>(
-                child: Text("Registro de usuario"),
+              PopupMenuItem<OrderOptions>(
+                child: Text('userRegister'.tr),
                 value: OrderOptions.userRegister,
               ),
-              const PopupMenuItem<OrderOptions>(
-                child: Text("Area"),
+              PopupMenuItem<OrderOptions>(
+                child: Text("area".tr),
                 value: OrderOptions.area,
               ),
-              const PopupMenuItem<OrderOptions>(
-                child: Text("Turno"),
+              PopupMenuItem<OrderOptions>(
+                child: Text("shift".tr),
                 value: OrderOptions.shift,
               ),
             ],
