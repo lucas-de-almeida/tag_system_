@@ -33,6 +33,9 @@ class TagsTranslation extends Translations {
           'shift': 'Shift',
           'listOSTitle': 'O.S List',
           'excludeOsAlert': 'It will exclude the O.S?',
+          'registerUser': 'User register',
+          'email': 'E-mail',
+          'phone': 'Phone',
         },
         'pt_BR': {
           'maintenanceTitle': 'HercoManutenção',
