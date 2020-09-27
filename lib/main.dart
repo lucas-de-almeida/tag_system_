@@ -17,7 +17,7 @@ void main() => runApp(
         fallbackLocale: Locale('en', 'US'),
         //so da getX!
         // olhas as rotas iniciadas so chama aonde quiser usando o Get.toNamed("/forget"); por exemplo
-        initialRoute: '/register_user',
+        initialRoute: '/',
         getPages: [
           GetPage(
             name: '/',
