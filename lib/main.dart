@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tag_system/lang/translation_tags.dart';
 import 'package:tag_system/pages/forget_password/forget_password.dart';
+import 'package:tag_system/pages/list_os/list_os_page.dart';
 import 'package:tag_system/pages/login_page/login_page.dart';
 import 'dart:ui' as ui;
 
@@ -14,7 +15,7 @@ void main() => runApp(
         fallbackLocale: Locale('en', 'US'),
         //so da getX!
         // olhas as rotas iniciadas so chama aonde quiser usando o Get.toNamed("/forget"); por exemplo
-        initialRoute: '/',
+        initialRoute: '/list_os',
         getPages: [
           GetPage(
             name: '/',
@@ -23,6 +24,10 @@ void main() => runApp(
           GetPage(
             name: '/forget',
             page: () => ForgetPassword(),
+          ),
+          GetPage(
+            name: '/list_os',
+            page: () => ListOS(),
           ),
         ],
       ),
