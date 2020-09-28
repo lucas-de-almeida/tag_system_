@@ -75,14 +75,12 @@ class _ResgisterUserState extends State<ResgisterUser> {
                 InputDefault.register(
                   inputController: _registerController,
                   //import o package do get e depois so colocar o tr!não esqueça da classe translation!
-                  hintText: 'registry'.tr,
                   icon: Icons.person,
                 ),
                 SizedBox(height: 10),
                 InputDefault.email(
                   inputController: _registerController,
                   //import o package do get e depois so colocar o tr!não esqueça da classe translation!
-                  hintText: 'email'.tr,
                   icon: Icons.email,
                 ),
                 SizedBox(height: 10),
@@ -118,16 +116,15 @@ class _ResgisterUserState extends State<ResgisterUser> {
                   }).toList(),
                 ),
                 SizedBox(height: 10),
-                InputDefault.cellPhone(
+                InputDefault.phoneNumber(
                   inputController: _registerController,
                   //import o package do get e depois so colocar o tr!não esqueça da classe translation!
-                  hintText: 'phone'.tr,
+
                   icon: Icons.phone,
                 ),
                 SizedBox(height: 10),
                 InputDefault.password(
                   inputController: _passordController,
-                  hintText: 'password'.tr,
                   icon: Icons.lock,
                   validator: (value) {
                     if (value.length < 6) {

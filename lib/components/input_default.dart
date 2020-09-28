@@ -43,6 +43,34 @@ class InputDefault extends StatelessWidget {
     this.focusNode,
   }) : super(key: key);
 
+  InputDefault.name({
+    Key key,
+    this.formatters,
+    this.labelText,
+    this.icon = Icons.person,
+    this.inputType,
+    @required this.inputController,
+    this.validator = _nameValidator,
+    this.onSaved,
+    this.onChanged,
+    this.onSubmited,
+    this.onEditComplete,
+    this.isPassword = false,
+    this.autofocus,
+    this.focusNode,
+  })  : this.hintText = 'name'.tr,
+        super(key: key);
+
+  static String _nameValidator(String value) {
+    if (value.length > 30) {
+      return 'nameValidation1'.tr;
+    }
+    if (value.length < 3) {
+      return 'nameValidation2'.tr;
+    }
+    return null;
+  }
+
   InputDefault.register({
     Key key,
     this.formatters,
@@ -50,7 +78,6 @@ class InputDefault extends StatelessWidget {
     this.icon,
     this.inputType,
     @required this.inputController,
-    this.hintText,
     this.validator = _registerValidator,
     this.onSaved,
     this.onChanged,
@@ -59,22 +86,22 @@ class InputDefault extends StatelessWidget {
     this.isPassword = false,
     this.autofocus,
     this.focusNode,
-  }) : super(key: key);
+  })  : this.hintText = 'registry'.tr,
+        super(key: key);
 
   static String _registerValidator(String value) {
     if (value.length > 6 || value.length < 1) {
-      return 'Registro inválido';
+      return 'registerInputError'.tr;
     }
     return null;
   }
 
   InputDefault.cpf({
     Key key,
-    this.labelText = 'CPF_TEXTFIELD',
+    this.labelText,
     this.icon = Icons.check_box_outline_blank,
     this.inputType = TextInputType.number,
     @required this.inputController,
-    this.hintText,
     this.validator = _cpfValidator,
     this.onSaved,
     this.onChanged,
@@ -83,7 +110,8 @@ class InputDefault extends StatelessWidget {
     this.isPassword = false,
     this.autofocus,
     this.focusNode,
-  })  : this.formatters = [
+  })  : this.hintText = 'cpfInputLabel'.tr,
+        this.formatters = [
           CnpjCpfFormatter(
             eDocumentType: EDocumentType.CPF,
           )
@@ -91,20 +119,19 @@ class InputDefault extends StatelessWidget {
         super(key: key);
 
   static String _cpfValidator(String value) {
-    if (CnpjCpfBase.isCpfValid(value)) {
+    if (GetUtils.isCpf(value)) {
       return null;
     }
-    return 'REGISTER_CPF_ERROR';
+    return 'cpfInputError'.tr;
   }
 
   InputDefault.email({
     Key key,
     this.formatters,
-    this.labelText = 'EMAIL_TEXTFILED',
+    this.labelText,
     this.icon = Icons.mail,
     this.inputType = TextInputType.emailAddress,
     @required this.inputController,
-    this.hintText,
     this.validator = _emailValidator,
     this.onSaved,
     this.onChanged,
@@ -113,23 +140,23 @@ class InputDefault extends StatelessWidget {
     this.isPassword = false,
     this.autofocus,
     this.focusNode,
-  }) : super(key: key);
+  })  : this.hintText = 'email'.tr,
+        super(key: key);
 
   static String _emailValidator(String value) {
-    if (EmailValidator.validate(value)) {
+    if (GetUtils.isEmail(value)) {
       return null;
     }
-    return 'REGISTER_EMAIL_ERROR';
+    return 'emailInputError'.tr;
   }
 
-  InputDefault.cellPhone({
+  InputDefault.phoneNumber({
     Key key,
-    this.labelText = 'REGISTER_PHONE',
+    this.labelText,
     this.icon = Icons.call,
     this.inputType = TextInputType.number,
     @required this.inputController,
-    this.hintText,
-    this.validator = _cellPhone,
+    this.validator = _phoneValidator,
     this.onSaved,
     this.onChanged,
     this.onSubmited,
@@ -137,27 +164,30 @@ class InputDefault extends StatelessWidget {
     this.isPassword = false,
     this.autofocus,
     this.focusNode,
-  })  : this.formatters = [
+  })  : this.hintText = 'phone'.tr,
+        this.formatters = [
           MaskTextInputFormatter(
               mask: '(##) # ####-####', filter: {"#": RegExp(r'[0-9]')})
         ],
         super(key: key);
 
-  static String _cellPhone(String value) {
-    if (!(value.length < 16)) {
+  static String _phoneValidator(String value) {
+    /* if (!(value.length < 16)) {
+      return null;
+    } */
+    if (GetUtils.isPhoneNumber(value)) {
       return null;
     }
-    return 'REGISTER_PHONE_ERROR';
+    return 'phoneInputError'.tr;
   }
 
   InputDefault.password({
     Key key,
     this.formatters,
-    this.labelText = 'HOME_PASSWORD',
+    this.labelText,
     this.icon,
     this.inputType,
     @required this.inputController,
-    this.hintText,
     @required this.validator,
     this.onSaved,
     this.onChanged,
@@ -166,7 +196,26 @@ class InputDefault extends StatelessWidget {
     this.isPassword = true,
     this.autofocus,
     this.focusNode,
-  }) : super(key: key);
+  })  : this.hintText = 'password'.tr,
+        super(key: key);
+
+  InputDefault.repeatPassword({
+    Key key,
+    this.formatters,
+    this.labelText,
+    this.icon,
+    this.inputType,
+    @required this.inputController,
+    @required this.validator,
+    this.onSaved,
+    this.onChanged,
+    this.onSubmited,
+    this.onEditComplete,
+    this.isPassword = true,
+    this.autofocus,
+    this.focusNode,
+  })  : this.hintText = 'repeatPassword'.tr,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

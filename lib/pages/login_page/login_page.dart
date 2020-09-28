@@ -31,7 +31,7 @@ class LoginPage extends StatelessWidget {
                 InputDefault.register(
                   inputController: _registerController,
                   //import o package do get e depois so colocar o tr!não esqueça da classe translation!
-                  hintText: 'registry'.tr,
+
                   icon: Icons.person,
                 ),
                 SizedBox(
@@ -39,8 +39,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 InputDefault.password(
                   inputController: _passordController,
-                  hintText: 'password'.tr,
-                  icon: Icons.lock,
+                  //hintText: 'password'.tr,
                   validator: (value) {
                     if (value.length < 6) {
                       return 'shortPass'.tr;
