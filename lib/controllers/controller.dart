@@ -6,6 +6,6 @@ class Controller extends GetxController {
   bool get returnIsObscure => isObscure.value;
 
   swichVisibility() {
-    isObscure.toggle();
+    isObscure.toggle(); //Função nativa do GetX alterna true/false;
   }
 }

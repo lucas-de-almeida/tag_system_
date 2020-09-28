@@ -8,7 +8,7 @@ import 'package:cnpj_cpf_helper/cnpj_cpf_helper.dart';
 import 'package:tag_system/controllers/controller.dart';
 
 class InputDefault extends StatelessWidget {
-  final Controller c = Get.put(Controller());
+  final Controller c = Get.put(Controller()); //Instacía o Controller do GetX;
   final List<TextInputFormatter> formatters;
   final String labelText;
   final IconData icon;

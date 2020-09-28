@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tag_system/components/dialog_confirm_button.dart';
 import 'package:tag_system/components/input_default.dart';
 import 'package:tag_system/components/large_button_default.dart';
 import 'package:tag_system/components/logo_default.dart';
@@ -16,7 +15,7 @@ class LoginPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(
-            top: Get.height * 0.1,
+            top: Get.height * 0.1, //Get.size substitui MediaQuery
             right: 32,
             left: 32,
           ),
@@ -60,6 +59,7 @@ class LoginPage extends StatelessWidget {
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
                             Get.snackbar(
+                              //Chama Snackbar diretamente do GetX
                               'logged'.tr,
                               'succesLogged'.tr,
                               snackPosition: SnackPosition.BOTTOM,
