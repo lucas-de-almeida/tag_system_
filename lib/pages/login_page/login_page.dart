@@ -10,6 +10,11 @@ class LoginPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    _registerController.text =
+        '123456'; // Temporário, apenas para logar mais rápido
+    _passordController.text = '123456';
+    bool _isUser =
+        true; // Variável temporária, confere se é user ou não e manda para o menu correto;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
@@ -64,6 +69,10 @@ class LoginPage extends StatelessWidget {
                               snackPosition: SnackPosition.BOTTOM,
                               backgroundColor: Colors.green,
                             );
+                            if (_isUser) {
+                              Get.toNamed('/user_menu_page');
+                            } else
+                              Get.toNamed("/admin_menu_page");
                           } else {
                             Get.snackbar(
                               'error'.tr,

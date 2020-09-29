@@ -5,8 +5,9 @@ import 'package:tag_system/pages/forget_password/forget_password.dart';
 import 'package:tag_system/pages/list_os/list_os_page.dart';
 import 'package:tag_system/pages/login_page/login_page.dart';
 import 'dart:ui' as ui;
-
 import 'package:tag_system/pages/register_user/register_user.dart';
+import 'pages/admin_menu_page/admin_menu_page.dart';
+import 'pages/user_menu_page/user_menu_page.dart';
 
 void main() => runApp(
       GetMaterialApp(
@@ -34,6 +35,14 @@ void main() => runApp(
           GetPage(
             name: '/register_user',
             page: () => ResgisterUser(),
+          ),
+          GetPage(
+            name: '/admin_menu_page',
+            page: () => AdminMenuPage(),
+          ),
+          GetPage(
+            name: '/user_menu_page',
+            page: () => UserMenuPage(),
           ),
         ],
       ),
