@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tag_system/lang/translation_tags.dart';
+import 'package:tag_system/pages/adm_list_os/adm_list_os_page.dart';
 import 'package:tag_system/pages/forget_password/forget_password.dart';
-import 'package:tag_system/pages/list_os/list_os_page.dart';
 import 'package:tag_system/pages/login_page/login_page.dart';
 import 'dart:ui' as ui;
 import 'package:tag_system/pages/register_user/register_user.dart';
@@ -30,7 +30,7 @@ void main() => runApp(
           ),
           GetPage(
             name: '/list_os',
-            page: () => ListOS(),
+            page: () => AdmListOS(),
           ),
           GetPage(
             name: '/register_user',

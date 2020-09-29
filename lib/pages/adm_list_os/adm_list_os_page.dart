@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
+import 'package:tag_system/models/os_model.dart';
 import 'package:tag_system/utils/constants.dart';
 import 'package:get/get.dart';
 
-class ListOS extends StatefulWidget {
+class AdmListOS extends StatefulWidget {
   @override
-  _ListOSState createState() => _ListOSState();
+  _AdmListOSState createState() => _AdmListOSState();
 }
 
-class _ListOSState extends State<ListOS> {
+class _AdmListOSState extends State<AdmListOS> {
   DateTime _dateTime = DateTime.now();
   @override
   Widget build(BuildContext context) {
-    //usa a biblioteca do intl para fazer a data do aparelho no formato que quiser
-    //porem essa data tem q ser alterada conform vir da lista , essa esta aqui pra se salvar no formato
-    String _dateFormat = DateFormat('dd/MM/y').format(_dateTime);
     return Scaffold(
       //pode ser mudado nao tem um exemplo lana marvel, nao recordo se iamos de drawer ou os botoes diretos na home
       //porem ja deixei pronto a base
@@ -100,70 +97,66 @@ class _ListOSState extends State<ListOS> {
           ),
         ],
       ),
-      body: Container(
-        width: 400,
-        height: 120,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [Color.fromARGB(255, 203, 236, 241), Colors.blue],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight),
-        ),
-        //dados do card vai vir do banco estes esta fixos so pra mostrar o modelo
-        //nao irei incluir tag de tradução para os itens dentro do card pq ele mudam conforme a lista
-        child: GestureDetector(
-          child: Card(
-            child: Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Row(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(left: 10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          _dateFormat,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          "Nome da maquina",
-                          style: TextStyle(fontSize: 18.0),
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          "Preventiva",
-                          style: TextStyle(fontSize: 18.0),
-                        ),
-                      ],
+      //copiado lista padrao do eduardo =)
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView.builder(
+          itemCount: OsModel.osListMock.length,
+          itemBuilder: (context, index) {
+            List<OsModel> _list = OsModel.osListMock;
+            return GestureDetector(
+              child: Card(
+                elevation: 6,
+                color: Colors.blueGrey.withOpacity(.5),
+                child: ListTile(
+                  title: Text(
+                    'Ocorrido: ${_list[index].descricaoOcorrido}',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ],
+                  subtitle: Text(
+                    'Realizado: ${_list[index].trabalhoExecutado}',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                  isThreeLine: true,
+                  leading: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'ID: ${_list[index].id.toString()}',
+                      ),
+                      Text(
+                        'Situação:\n${_list[index].status.toString().split('.').last}',
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ),
-          onTap: () {
-            print('navega para tela de edicao/cadastro');
-          },
-          onLongPress: () {
-            Get.defaultDialog(
-              title: 'excludeOsAlert'.tr,
-              cancel: FlatButton(
-                onPressed: () {
-                  Get.back();
-                },
-                child: Text('cancel'.tr),
-              ),
-              confirm: FlatButton(
-                onPressed: () {
-                  print('chama a funcao pra deletar');
-                  Get.back();
-                },
-                child: Text('enter'.tr),
-              ),
+              onTap: () {
+                print('navega para tela de edicao/cadastro');
+              },
+              onLongPress: () {
+                Get.defaultDialog(
+                  title: 'excludeOsAlert'.tr,
+                  cancel: FlatButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    child: Text('cancel'.tr),
+                  ),
+                  confirm: FlatButton(
+                    onPressed: () {
+                      print('chama a funcao pra deletar');
+                      Get.back();
+                    },
+                    child: Text('enter'.tr),
+                  ),
+                );
+              },
             );
           },
         ),
