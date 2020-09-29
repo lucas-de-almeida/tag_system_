@@ -1,30 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:tag_system/controllers/controller.dart';
 
-class DropMenuDefault extends StatelessWidget {
+class DropMenuDefault extends StatefulWidget {
   final List<DropdownMenuItem<dynamic>> items;
-  final String value;
+  String value;
   final String labelText;
-  final Controller c = Get.put(Controller());
 
   DropMenuDefault(
       {Key key, this.items, this.value = 'dropdefault', this.labelText})
       : super(key: key);
 
   @override
+  _DropMenuDefaultState createState() => _DropMenuDefaultState();
+}
+
+class _DropMenuDefaultState extends State<DropMenuDefault> {
+  @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => DropdownButtonFormField(
-        value: value,
-        items: items,
-        decoration: InputDecoration(
-          labelText: labelText,
-        ),
-        onChanged: (v) {
-          c.isValue = c.addValue(v) as RxString;
-        },
+    return DropdownButtonFormField(
+      value: widget.value,
+      items: widget.items,
+      decoration: InputDecoration(
+        labelText: widget.labelText,
       ),
+      onChanged: (value) {
+        setState(() {
+          widget.value = value;
+        });
+      },
     );
   }
 }
