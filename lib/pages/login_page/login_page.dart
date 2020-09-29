@@ -69,10 +69,16 @@ class LoginPage extends StatelessWidget {
                               snackPosition: SnackPosition.BOTTOM,
                               backgroundColor: Colors.green,
                             );
+                            if (_registerController.text == '123466') {
+                              _isUser = false;
+                            }
                             if (_isUser) {
+                              _isUser = true;
                               Get.toNamed('/user_menu_page');
                             } else
-                              Get.toNamed("/admin_menu_page");
+                              _isUser = true;
+
+                            Get.toNamed("/admin_menu_page");
                           } else {
                             Get.snackbar(
                               'error'.tr,
