@@ -7,7 +7,9 @@ class OsModel {
   //List<Usuario> responsaveis;
   OsModel osVinculada;
   Status status;
-
+  //usa a biblioteca do intl para fazer a data do aparelho no formato que quiser
+  //porem essa data tem q ser alterada conform vir da lista , essa esta aqui pra se salvar no formato
+  //String _dateFormat = DateFormat('dd/MM/y').format(_dateTime);
   OsModel({
     this.id,
     this.descricaoOcorrido = 'Sem descrição',

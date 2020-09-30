@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tag_system/components/drop_default.dart';
 import 'package:tag_system/components/input_default.dart';
+import 'package:find_dropdown/find_dropdown.dart';
 
 class ResgisterUser extends StatefulWidget {
   @override
@@ -84,36 +84,32 @@ class _ResgisterUserState extends State<ResgisterUser> {
                   icon: Icons.email,
                 ),
                 SizedBox(height: 10),
-                DropMenuDefault(
-                  labelText: 'shift'.tr,
-                  value: 'Escolha um turno',
+                FindDropdown(
+                  constraints: BoxConstraints(maxHeight: 250),
+                  showSearchBox: false,
                   items: [
                     'Escolha um turno',
                     'Primeiro turno',
                     'Segundo turno',
                     'Terceiro turno',
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
+                  ],
+                  label: 'shift'.tr,
+                  onChanged: (String item) => print(item),
+                  selectedItem: 'Escolha um turno',
                 ),
                 SizedBox(height: 10),
-                DropMenuDefault(
-                  labelText: 'area'.tr,
-                  value: 'Escolha uma area',
+                FindDropdown(
+                  constraints: BoxConstraints(maxHeight: 250),
+                  showSearchBox: false,
                   items: [
                     'Escolha uma area',
                     'Manutenção',
                     'Adm',
                     'Operador',
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
+                  ],
+                  label: 'area'.tr,
+                  onChanged: (String item) => print(item),
+                  selectedItem: 'Escolha uma area',
                 ),
                 SizedBox(height: 10),
                 InputDefault.phoneNumber(
