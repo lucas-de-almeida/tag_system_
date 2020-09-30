@@ -1,5 +1,5 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:tag_system/components/card_default.dart';
 import 'package:tag_system/models/os_model.dart';
 
 class UserMenuPage extends StatelessWidget {
@@ -19,36 +19,13 @@ class UserMenuPage extends StatelessWidget {
             itemCount: OsModel.osListMock.length,
             itemBuilder: (context, index) {
               List<OsModel> _list = OsModel.osListMock;
-              return Card(
-                elevation: 6,
-                color: Colors.blueGrey.withOpacity(.5),
-                child: ListTile(
-                  title: Text(
+              return CardDefault(
+                listDescriptionOccurred:
                     'Ocorrido: ${_list[index].descricaoOcorrido}',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  subtitle: Text(
+                listDescriptionAccomplished:
                     'Realizado: ${_list[index].trabalhoExecutado}',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                  isThreeLine: true,
-                  leading: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'ID: ${_list[index].id.toString()}',
-                      ),
-                      Text(
-                        'Situação:\n${_list[index].status.toString().split('.').last}',
-                      ),
-                    ],
-                  ),
-                ),
+                listDescriptionID: 'ID: ${_list[index].id}',
+                listDescriptionSituation: 'Situação:\n${_list[index].status}',
               );
             },
           )),

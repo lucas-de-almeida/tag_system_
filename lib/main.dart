@@ -18,7 +18,7 @@ void main() => runApp(
         fallbackLocale: Locale('en', 'US'),
         //so da getX!
         // olhas as rotas iniciadas so chama aonde quiser usando o Get.toNamed("/forget"); por exemplo
-        initialRoute: '/',
+        initialRoute: '/adm_list_os',
         getPages: [
           GetPage(
             name: '/',
@@ -29,7 +29,7 @@ void main() => runApp(
             page: () => ForgetPassword(),
           ),
           GetPage(
-            name: '/list_os',
+            name: '/adm_list_os',
             page: () => AdmListOS(),
           ),
           GetPage(
