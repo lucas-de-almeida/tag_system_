@@ -57,19 +57,8 @@ class _ResgisterUserState extends State<ResgisterUser> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                InputDefault(
+                InputDefault.name(
                   inputController: _nameController,
-                  hintText: 'name'.tr,
-                  icon: Icons.person,
-                  validator: (String value) {
-                    if (value.length > 30) {
-                      return 'nameValidation1'.tr;
-                    }
-                    if (value.length < 3) {
-                      return 'nameValidation2'.tr;
-                    }
-                    return null;
-                  },
                 ),
                 SizedBox(height: 10),
                 InputDefault.register(
