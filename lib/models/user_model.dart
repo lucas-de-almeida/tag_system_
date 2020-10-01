@@ -17,7 +17,9 @@ class UserModel {
     this.password,
   });
 
-  static List<UserModel> osListMock = [
+  UserModel.empty();
+
+  static List<UserModel> userList = [
     UserModel(
       name: 'Lucas Almeida',
       register: '123456',
