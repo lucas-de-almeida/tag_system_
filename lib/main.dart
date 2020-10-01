@@ -30,7 +30,7 @@ void main() => runApp(
             page: () => ForgetPassword(),
           ),
           GetPage(
-            name: '/list_os',
+            name: '/adm_list_os',
             page: () => AdmListOS(),
           ),
           GetPage(

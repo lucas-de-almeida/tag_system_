@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tag_system/components/card_default.dart';
 import 'package:tag_system/models/os_model.dart';
 import 'package:tag_system/utils/constants.dart';
 import 'package:get/get.dart';
@@ -105,36 +106,13 @@ class _AdmListOSState extends State<AdmListOS> {
           itemBuilder: (context, index) {
             List<OsModel> _list = OsModel.osListMock;
             return GestureDetector(
-              child: Card(
-                elevation: 6,
-                color: Colors.blueGrey.withOpacity(.5),
-                child: ListTile(
-                  title: Text(
+              child: CardDefault(
+                listDescriptionOccurred:
                     'Ocorrido: ${_list[index].descricaoOcorrido}',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  subtitle: Text(
+                listDescriptionAccomplished:
                     'Realizado: ${_list[index].trabalhoExecutado}',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                  isThreeLine: true,
-                  leading: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'ID: ${_list[index].id.toString()}',
-                      ),
-                      Text(
-                        'Situação:\n${_list[index].status.toString().split('.').last}',
-                      ),
-                    ],
-                  ),
-                ),
+                listDescriptionID: 'ID: ${_list[index].id}',
+                listDescriptionSituation: 'Situação:\n${_list[index].status}',
               ),
               onTap: () {
                 print('navega para tela de edicao/cadastro');

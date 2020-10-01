@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tag_system/components/input_default.dart';
 import 'package:find_dropdown/find_dropdown.dart';
+import 'package:tag_system/models/user_model.dart';
 
 class ResgisterUser extends StatefulWidget {
   @override
@@ -11,9 +12,12 @@ class ResgisterUser extends StatefulWidget {
 class _ResgisterUserState extends State<ResgisterUser> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _registerController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passordController = TextEditingController();
-  String dropdownValueSfhift = 'Escolha um turno';
-  String dropdownValueArea = 'Escolha uma area';
+  List<UserModel> _userList = List<UserModel>();
+  UserModel _userModel = UserModel();
+
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -26,8 +30,11 @@ class _ResgisterUserState extends State<ResgisterUser> {
           IconButton(
             icon: Icon(Icons.save),
             onPressed: () {
-              print('funcao que salva o usuario');
               if (_formKey.currentState.validate()) {
+                //a princio iria salvar na lista porem os controllers nao esato pegando o valor
+                //o on save nao esta salvando
+                _userList.add(_userModel);
+
                 Get.snackbar(
                   'logged'.tr,
                   'succesLogged'.tr,
@@ -57,29 +64,21 @@ class _ResgisterUserState extends State<ResgisterUser> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                InputDefault(
+                InputDefault.name(
                   inputController: _nameController,
-                  hintText: 'name'.tr,
-                  icon: Icons.person,
-                  validator: (String value) {
-                    if (value.length > 30) {
-                      return 'nameValidation1'.tr;
-                    }
-                    if (value.length < 3) {
-                      return 'nameValidation2'.tr;
-                    }
-                    return null;
-                  },
+                  onSaved: (String value) => _userModel.name = value,
                 ),
                 SizedBox(height: 10),
                 InputDefault.register(
                   inputController: _registerController,
+                  onSaved: (String value) => _userModel.register = value,
                   //import o package do get e depois so colocar o tr!não esqueça da classe translation!
                   icon: Icons.person,
                 ),
                 SizedBox(height: 10),
                 InputDefault.email(
-                  inputController: _registerController,
+                  inputController: _emailController,
+                  onSaved: (String value) => _userModel.email = value,
                   //import o package do get e depois so colocar o tr!não esqueça da classe translation!
                   icon: Icons.email,
                 ),
@@ -94,7 +93,7 @@ class _ResgisterUserState extends State<ResgisterUser> {
                     'Terceiro turno',
                   ],
                   label: 'shift'.tr,
-                  onChanged: (String item) => print(item),
+                  onChanged: (String item) => _userModel.shift,
                   selectedItem: 'Escolha um turno',
                 ),
                 SizedBox(height: 10),
@@ -108,14 +107,15 @@ class _ResgisterUserState extends State<ResgisterUser> {
                     'Operador',
                   ],
                   label: 'area'.tr,
-                  onChanged: (String item) => print(item),
+                  onChanged: (String item) => _userModel.area,
                   selectedItem: 'Escolha uma area',
                 ),
                 SizedBox(height: 10),
+                //validaç]ao ta dando erro nao aceita o numero de telefone
                 InputDefault.phoneNumber(
-                  inputController: _registerController,
+                  inputController: _phoneController,
+                  onSaved: (String value) => _userModel.phone = value,
                   //import o package do get e depois so colocar o tr!não esqueça da classe translation!
-
                   icon: Icons.phone,
                 ),
                 SizedBox(height: 10),
@@ -128,6 +128,7 @@ class _ResgisterUserState extends State<ResgisterUser> {
                     }
                     return null;
                   },
+                  onSaved: (String value) => _userModel.password = value,
                 ),
                 SizedBox(height: Get.height * 0.09),
               ],

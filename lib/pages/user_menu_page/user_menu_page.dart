@@ -1,6 +1,9 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:get/get.dart';
+=======
+import 'package:tag_system/components/card_default.dart';
+>>>>>>> 8dc94578d06cfc940b3577d8c0bc9dcc68ee9de5
 import 'package:tag_system/models/os_model.dart';
 import 'package:tag_system/pages/open_solicitation_page/open_solicitation_controller.dart';
 
