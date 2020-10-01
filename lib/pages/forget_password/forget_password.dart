@@ -55,20 +55,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     SizedBox(
                       height: 40,
                     ),
-                    //TODO: Foi criado um construtor padrão name;
-                    InputDefault(
+
+                    InputDefault.name(
                       inputController: _nameController,
-                      hintText: 'name'.tr,
-                      icon: Icons.person,
-                      validator: (String value) {
-                        if (value.length > 30) {
-                          return 'nameValidation1'.tr;
-                        }
-                        if (value.length < 3) {
-                          return 'nameValidation2'.tr;
-                        }
-                        return null;
-                      },
                     ),
                     SizedBox(
                       height: 40,
@@ -86,9 +75,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     SizedBox(
                       height: 40,
                     ),
-                    //TODO: Foi adicionado um construtor repeat password.
+
                     //No validade dele deve coferir se o valor dele e do password são iguais
-                    InputDefault.password(
+                    InputDefault.repeatPassword(
                       inputController: _passwordRepeatController,
                       icon: Icons.lock,
                       validator: (value) {
