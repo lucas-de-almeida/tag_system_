@@ -4,6 +4,7 @@ import 'package:tag_system/lang/translation_tags.dart';
 import 'package:tag_system/pages/adm_list_os/adm_list_os_page.dart';
 import 'package:tag_system/pages/forget_password/forget_password.dart';
 import 'package:tag_system/pages/login_page/login_page.dart';
+import 'package:tag_system/pages/open_solicitation_page/open_solicitation_page.dart';
 import 'dart:ui' as ui;
 import 'package:tag_system/pages/register_user/register_user.dart';
 import 'pages/admin_menu_page/admin_menu_page.dart';
@@ -43,6 +44,10 @@ void main() => runApp(
           GetPage(
             name: '/user_menu_page',
             page: () => UserMenuPage(),
+          ),
+          GetPage(
+            name: '/open_solicitation_page',
+            page: () => OpenSolicitationPage(),
           ),
         ],
       ),
