@@ -24,7 +24,7 @@ class OsModel {
       descricaoOcorrido: 'Rompimento de esteira nº123',
       status: Status.aberto,
     ),
-    OsModel(
+    /* OsModel(
       id: 2,
       descricaoOcorrido: 'Para de máquina',
       trabalhoExecutado:
@@ -57,7 +57,7 @@ class OsModel {
         id: 7,
         descricaoOcorrido: 'Ventilador do setor XA estragou',
         status: Status.fechado,
-        trabalhoExecutado: 'Foi substituido o ventilador'),
+        trabalhoExecutado: 'Foi substituido o ventilador'), */
   ];
 }
 
