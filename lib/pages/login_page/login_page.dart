@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tag_system/components/dialog_confirm_button.dart';
 import 'package:tag_system/components/input_default.dart';
 import 'package:tag_system/components/large_button_default.dart';
 import 'package:tag_system/components/logo_default.dart';
+import 'package:tag_system/services/login_service.dart';
 
 class LoginPage extends StatelessWidget {
   final TextEditingController _registerController = TextEditingController();
-  final TextEditingController _passordController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-
+  final _loginService = LoginService();
   bool _isUser =
       true; // Variável temporária, confere se é user ou não e manda para o menu correto;
   @override
   Widget build(BuildContext context) {
-    _registerController.text =
-        '123456'; // Temporário, apenas para logar mais rápido
-    _passordController.text = '123456';
+    void _sigin() async {
+      var _isValid = await _loginService.signIn(
+        register: _registerController.text,
+        password: _passwordController.text,
+      );
+      if (_isValid) {
+        Get.toNamed('/user_menu_page');
+      } else {
+        Get.toNamed("/admin_menu_page");
+      }
+    }
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -45,7 +55,7 @@ class LoginPage extends StatelessWidget {
                   height: 40,
                 ),
                 InputDefault.password(
-                  inputController: _passordController,
+                  inputController: _passwordController,
                   //hintText: 'password'.tr,
                   validator: (value) {
                     if (value.length < 6) {
@@ -64,25 +74,7 @@ class LoginPage extends StatelessWidget {
                         label: 'enter'.tr,
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
-                            Get.snackbar(
-                              //Chama Snackbar diretamente do GetX
-                              'logged'.tr,
-                              'succesLogged'.tr,
-                              snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: Colors.green,
-                            );
-                            if (_registerController.text == '123466') {
-                              _isUser = false;
-                            }
-                            print(_isUser);
-                            if (_isUser) {
-                              Get.toNamed('/user_menu_page');
-                            } else {
-                              _isUser = true;
-
-                              Get.toNamed("/admin_menu_page");
-                            }
-                          } else {
+                            _sigin();
                             Get.snackbar(
                               'error'.tr,
                               'errorLog'.tr,
@@ -90,6 +82,13 @@ class LoginPage extends StatelessWidget {
                               snackPosition: SnackPosition.BOTTOM,
                             );
                           }
+                          Get.snackbar(
+                            //Chama Snackbar diretamente do GetX
+                            'logged'.tr,
+                            'succesLogged'.tr,
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: Colors.green,
+                          );
                         },
                       ),
                     ),
@@ -102,7 +101,6 @@ class LoginPage extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: FlatButton(
                     onPressed: () {
-                      /*
                       Get.defaultDialog(
                         radius: 0.0,
                         title: 'forgetPasswordTitle'.tr,
@@ -114,10 +112,8 @@ class LoginPage extends StatelessWidget {
                           child: DialogConfirmButton(),
                         ),
                       );
-                       */
-                      //se se for adm e so descomenta kkkk
 
-                      Get.toNamed("/forget");
+                      //se se for adm e so descomenta kkkk
                     },
                     child: Column(
                       children: [

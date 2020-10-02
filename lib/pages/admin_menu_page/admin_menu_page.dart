@@ -19,6 +19,11 @@ class AdminMenuPage extends StatelessWidget {
               color: Colors.blue,
             ),
             MenuTileDefault(
+              label: 'Alterar senha',
+              onPressed: () => Get.toNamed("/forget"),
+              color: Colors.blue,
+            ),
+            MenuTileDefault(
               label: 'Lista de OS',
               onPressed: () => Get.toNamed("/list_os"),
               color: Colors.red,
@@ -44,3 +49,5 @@ class AdminMenuPage extends StatelessWidget {
     );
   }
 }
+
+//
